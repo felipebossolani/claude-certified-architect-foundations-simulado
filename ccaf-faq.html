@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCA-F Study Lab — FAQ</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-card: #1a2233;
+  --bg-hover: #1e293b;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-purple: #8b5cf6;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --border: #1e293b;
+  --border-active: #334155;
+  --radius: 12px;
+  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.15);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+code, .mono { font-family: 'JetBrains Mono', monospace; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(10px);
+}
+.header-inner {
+  max-width: 900px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 18px; color: white;
+}
+.logo-text { font-size: 18px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-primary); }
+.logo-sub { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+.back-link {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--accent-blue); text-decoration: none; font-size: 14px; font-weight: 500;
+  padding: 8px 16px; border-radius: var(--radius);
+  border: 1px solid var(--border); transition: all 0.2s;
+}
+.back-link:hover { border-color: var(--accent-blue); background: rgba(59,130,246,0.08); }
+
+/* Container */
+.container { max-width: 900px; margin: 0 auto; padding: 24px; }
+
+/* Hero */
+.hero { padding: 40px 0 32px; }
+.hero-title { font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; }
+.hero-subtitle { color: var(--text-secondary); font-size: 15px; max-width: 600px; }
+
+/* Section */
+.section { margin-bottom: 40px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--border);
+}
+.section-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.section-icon.exam { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+.section-icon.lab { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
+.section-icon.strategy { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
+.section-icon.concepts { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+.section-title { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+
+/* Accordion */
+.faq-item {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 10px;
+  overflow: hidden; transition: border-color 0.2s;
+}
+.faq-item:hover { border-color: var(--border-active); }
+.faq-item.open { border-color: var(--border-active); }
+.faq-question {
+  padding: 16px 20px; cursor: pointer; user-select: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  font-weight: 600; font-size: 15px; line-height: 1.5;
+}
+.faq-question:hover { background: var(--bg-hover); }
+.faq-chevron {
+  flex-shrink: 0; width: 20px; height: 20px;
+  transition: transform 0.25s ease;
+  color: var(--text-muted);
+}
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.faq-answer-inner {
+  padding: 0 20px 20px;
+  font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+}
+.faq-answer-inner p { margin-bottom: 12px; }
+.faq-answer-inner p:last-child { margin-bottom: 0; }
+.faq-answer-inner strong { color: var(--text-primary); }
+.faq-answer-inner code {
+  background: rgba(6,182,212,0.1); padding: 2px 6px; border-radius: 4px;
+  font-size: 13px; color: var(--accent-cyan);
+}
+.faq-answer-inner a { color: var(--accent-blue); text-decoration: none; }
+.faq-answer-inner a:hover { text-decoration: underline; }
+.faq-answer-inner ul, .faq-answer-inner ol { margin: 8px 0 12px 20px; }
+.faq-answer-inner li { margin-bottom: 6px; }
+
+/* Domain table */
+.domain-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+.domain-table th {
+  text-align: left; padding: 8px 12px; font-weight: 600;
+  border-bottom: 1px solid var(--border); color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.domain-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.domain-badge {
+  padding: 2px 8px; border-radius: 6px; font-size: 11px;
+  font-weight: 600; font-family: 'JetBrains Mono', monospace;
+}
+.d1-badge { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+.d2-badge { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
+.d3-badge { background: rgba(6,182,212,0.15); color: var(--accent-cyan); }
+.d4-badge { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
+.d5-badge { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+
+/* Info box */
+.info-box {
+  background: rgba(59,130,246,0.06);
+  border-left: 3px solid var(--accent-blue);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px; margin: 12px 0;
+  font-size: 13px;
+}
+.warning-box {
+  background: rgba(245,158,11,0.06);
+  border-left: 3px solid var(--accent-amber);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px; margin: 12px 0;
+  font-size: 13px;
+}
+
+/* Concept cards */
+.concept-grid { display: grid; gap: 8px; margin: 12px 0; }
+.concept-item {
+  display: flex; gap: 8px; align-items: baseline;
+  font-size: 13px; line-height: 1.6;
+}
+.concept-bullet {
+  flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;
+  margin-top: 8px;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0; margin-top: 40px;
+  text-align: center; font-size: 13px; color: var(--text-muted);
+}
+.footer a { color: var(--accent-blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .header-inner { flex-direction: column; gap: 12px; }
+  .hero-title { font-size: 24px; }
+  .faq-question { font-size: 14px; padding: 14px 16px; }
+  .faq-answer-inner { padding: 0 16px 16px; }
+  .domain-table { font-size: 12px; }
+  .domain-table th, .domain-table td { padding: 6px 8px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">C</div>
+      <div><div class="logo-text">CCA-F Study Lab</div><div class="logo-sub">FAQ</div></div>
+    </a>
+    <a href="index.html" class="back-link">← Voltar ao Simulado</a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="hero">
+    <div class="hero-title">Perguntas Frequentes</div>
+    <div class="hero-subtitle">Tudo sobre o exame CCA-F, o Study Lab e estratégias de estudo.</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SOBRE O EXAME CCA-F               -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon exam">?</div>
+      <div class="section-title">Sobre o Exame CCA-F</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        O que é a certificação CCA-F?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>A <strong>Claude Certified Architect — Foundations (CCA-F)</strong> é a certificação de nível 301 da Anthropic para arquitetos de soluções que trabalham com Claude.</p>
+        <table class="domain-table">
+          <tr><td><strong>Formato</strong></td><td>60 questões de múltipla escolha</td></tr>
+          <tr><td><strong>Duração</strong></td><td>120 minutos</td></tr>
+          <tr><td><strong>Score mínimo</strong></td><td>720 / 1000 (escala de 100–1000)</td></tr>
+          <tr><td><strong>Custo</strong></td><td>$99 USD</td></tr>
+          <tr><td><strong>Tentativas</strong></td><td>1 tentativa por compra</td></tr>
+          <tr><td><strong>Proctoring</strong></td><td>Online, via ProctorFree</td></tr>
+        </table>
+        <p>Após aprovação, você recebe um badge digital para adicionar ao LinkedIn.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Quem deve fazer o exame?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>O exame é voltado para <strong>solution architects</strong> com pelo menos <strong>6 meses de experiência prática</strong> com o ecossistema Claude, incluindo:</p>
+        <ul>
+          <li>Claude APIs (Messages API, tool use)</li>
+          <li>Agent SDK e padrões de agentes</li>
+          <li>Claude Code (CLI, configuração, workflows)</li>
+          <li>Model Context Protocol (MCP)</li>
+        </ul>
+        <p>Se você é desenvolvedor, CTO ou tech lead que usa Claude em produção, este é o exame certo.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Quais são os 5 domínios e seus pesos?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <table class="domain-table">
+          <thead><tr><th>Domínio</th><th>Título</th><th>Peso</th></tr></thead>
+          <tbody>
+            <tr><td><span class="domain-badge d1-badge">D1</span></td><td>Agentic Architecture &amp; Orchestration</td><td><strong>27%</strong></td></tr>
+            <tr><td><span class="domain-badge d2-badge">D2</span></td><td>Tool Design &amp; MCP Integration</td><td><strong>18%</strong></td></tr>
+            <tr><td><span class="domain-badge d3-badge">D3</span></td><td>Claude Code Configuration &amp; Workflows</td><td><strong>20%</strong></td></tr>
+            <tr><td><span class="domain-badge d4-badge">D4</span></td><td>Prompt Engineering &amp; Structured Output</td><td><strong>20%</strong></td></tr>
+            <tr><td><span class="domain-badge d5-badge">D5</span></td><td>Context Management &amp; Reliability</td><td><strong>15%</strong></td></tr>
+          </tbody>
+        </table>
+        <p>D1 sozinho vale mais de um quarto do exame — é o domínio mais importante.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Quais cenários aparecem no exame?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Existem <strong>6 cenários</strong> no banco do exame. Em cada tentativa, <strong>4 são sorteados</strong>:</p>
+        <ol>
+          <li><strong>Customer Support Resolution Agent</strong> — loops agênticos, tool design, escalation</li>
+          <li><strong>Code Generation with Claude Code</strong> — CLAUDE.md, plan mode, slash commands</li>
+          <li><strong>Multi-Agent Research System</strong> — coordinator patterns, error propagation, context</li>
+          <li><strong>Developer Productivity with Claude</strong> — built-in tools, MCP integration</li>
+          <li><strong>Claude Code for CI/CD</strong> — non-interactive mode, structured output, batch</li>
+          <li><strong>Structured Data Extraction</strong> — JSON schemas, validation loops, human review</li>
+        </ol>
+        <p>As questões são contextualizadas dentro desses cenários, exigindo julgamento arquitetural aplicado.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Onde me registro para o exame?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>O registro é feito na <a href="https://anthropic.skilljar.com" target="_blank">Anthropic Academy (anthropic.skilljar.com)</a>. Lá você encontra os cursos preparatórios gratuitos e o link para comprar o voucher do exame ($99).</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Existe um practice exam oficial?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Sim. A Anthropic disponibiliza um <strong>practice exam com 60 questões</strong> no Skilljar, gratuito. Ele simula o formato real do exame.</p>
+        <div class="info-box">
+          <strong>Dica:</strong> Tente tirar <strong>900+ no practice exam</strong> antes de agendar o exame real. Se você está consistentemente acima de 900, provavelmente está pronto.
+        </div>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Recebo badge no LinkedIn após aprovação?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Sim. Após aprovação, a Anthropic emite um <strong>badge digital</strong> que pode ser adicionado ao seu perfil do LinkedIn como credencial verificável.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SOBRE O STUDY LAB                  -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon lab">&#x2726;</div>
+      <div class="section-title">Sobre o Study Lab</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        O que é o CCA-F Study Lab?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Um <strong>repositório de estudos não-oficial</strong> com um simulado interativo para a certificação CCA-F. Criado por e para a comunidade de devs que estão se preparando para o exame.</p>
+        <div class="warning-box">
+          <strong>Aviso:</strong> Este projeto não é afiliado nem endossado pela Anthropic.
+        </div>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        De onde vêm as 337 questões?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>As questões foram coletadas e deduplicadas de <strong>6 fontes</strong>:</p>
+        <table class="domain-table">
+          <thead><tr><th>Fonte</th><th>Qtd</th><th>Origem</th></tr></thead>
+          <tbody>
+            <tr><td>official-exam-guide</td><td>11</td><td>Anthropic Exam Guide</td></tr>
+            <tr><td>community-generated</td><td>45</td><td>Baseadas nos task statements</td></tr>
+            <tr><td>sgridworks</td><td>100</td><td><a href="https://github.com/SGridworks/claude-certified-architect-training" target="_blank">SGridworks repo</a></td></tr>
+            <tr><td>sgridworks-fullexam</td><td>49</td><td>SGridworks full exam</td></tr>
+            <tr><td>olivier-alter</td><td>74</td><td><a href="https://github.com/OlivierAlter/Claude-Certified-Architect-Foundations-Certification-Exam" target="_blank">OlivierAlter repo</a></td></tr>
+            <tr><td>paullarionov</td><td>58</td><td><a href="https://github.com/paullarionov/claude-certified-architect" target="_blank">PaulLarionov repo</a></td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Como uso o simulado?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Abra o <a href="index.html">simulado</a> no navegador (funciona offline, zero dependências). Na tela inicial:</p>
+        <ol>
+          <li><strong>Selecione domínios</strong> — escolha D1–D5 individualmente ou todos</li>
+          <li><strong>Modo de feedback</strong> — <code>Imediato</code> (revela ao clicar) ou <code>No final</code> (confirma antes)</li>
+          <li><strong>Ordem</strong> — <code>Embaralhar</code> ou <code>Sequencial</code></li>
+          <li>Clique <strong>Iniciar</strong></li>
+        </ol>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Quais features o simulado oferece?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <ul>
+          <li><strong>Score escalado</strong> — 100 a 1000 (mesmo formato do exame real)</li>
+          <li><strong>Breakdown por domínio</strong> — veja onde está forte e onde precisa melhorar</li>
+          <li><strong>Refazer erradas</strong> — embaralha apenas as questões que você errou para drill down</li>
+          <li><strong>Funciona offline</strong> — HTML self-contained, sem server</li>
+          <li><strong>Explicações detalhadas</strong> — cada questão tem explicação da resposta correta e por que as alternativas estão erradas</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Qual o formato das questões no JSON?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Cada questão em <code>all_questions.json</code> segue este schema:</p>
+        <pre style="background:var(--bg-secondary);padding:16px;border-radius:8px;overflow-x:auto;margin:12px 0;font-size:13px;line-height:1.5;"><code>{
+  "id": "D1-001",
+  "source": "official-exam-guide",
+  "scenario": "Customer Support Resolution Agent",
+  "task_statement": "1.4",
+  "question": "Texto da pergunta...",
+  "options": { "A": "...", "B": "...", "C": "...", "D": "..." },
+  "correct": "A",
+  "explanation": "Explicação detalhada...",
+  "domain": "D1"
+}</code></pre>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- ESTRATÉGIA DE ESTUDO               -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon strategy">&#x2738;</div>
+      <div class="section-title">Estratégia de Estudo</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Qual a ordem sugerida para estudar os domínios?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p><strong>Por peso no exame:</strong></p>
+        <ol>
+          <li><span class="domain-badge d1-badge">D1</span> Agentic Architecture — <strong>27%</strong> (maior peso, comece aqui)</li>
+          <li><span class="domain-badge d3-badge">D3</span> Claude Code Config — <strong>20%</strong></li>
+          <li><span class="domain-badge d4-badge">D4</span> Prompt Engineering — <strong>20%</strong></li>
+          <li><span class="domain-badge d2-badge">D2</span> Tool Design &amp; MCP — <strong>18%</strong></li>
+          <li><span class="domain-badge d5-badge">D5</span> Context &amp; Reliability — <strong>15%</strong></li>
+        </ol>
+        <p><strong>Alternativa — por familiaridade:</strong> se você já usa Claude Code no dia a dia, comece por D3 para consolidar o que já sabe, e depois ataque D1.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Quando sei que estou pronto para o exame real?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Faça o <strong>practice exam oficial no Skilljar</strong>. Se você tirar consistentemente <strong>900+</strong>, provavelmente está pronto.</p>
+        <div class="info-box">
+          O exame real tem 60 questões e exige 720 para aprovação. Uma margem de 180 pontos (900 vs 720) dá confiança suficiente para lidar com questões mais difíceis ou cenários desconhecidos.
+        </div>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        No que devo focar: memorização ou julgamento?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p><strong>Julgamento arquitetural.</strong> O exame não testa se você decorou APIs — ele testa se você sabe escolher a abordagem certa para cada situação. Muitas questões apresentam opções que "parecem certas" mas são anti-patterns.</p>
+        <p>Foque em entender <strong>por que</strong> cada alternativa errada está errada, não apenas qual é a correta.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Quais são os 7 anti-patterns mais cobrados?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <ol>
+          <li><strong>Parsing natural language para loop termination</strong> — usar <code>stop_reason</code> em vez de tentar interpretar texto</li>
+          <li><strong>Arbitrary iteration caps</strong> — limites fixos sem critério de convergência real</li>
+          <li><strong>Prompt-only enforcement para business rules</strong> — regras críticas precisam de enforcement programático, não apenas instruções no prompt</li>
+          <li><strong>Subagent context leakage</strong> — agentes filhos não devem vazar contexto entre si sem controle</li>
+          <li><strong>Ambiguous tool descriptions</strong> — descriptions são o mecanismo primário de seleção de tools pelo modelo</li>
+          <li><strong>Self-review no mesmo contexto</strong> — o modelo revisando seu próprio output no mesmo context window tende a confirmar erros</li>
+          <li><strong>Progressive summarization sem preservar dados críticos</strong> — sumarização que descarta informações essenciais</li>
+        </ol>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        Quais recursos complementares recomendam?
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <ul>
+          <li><a href="https://anthropic.skilljar.com" target="_blank">Anthropic Academy</a> — cursos oficiais gratuitos + practice exam</li>
+          <li><a href="https://github.com/SGridworks/claude-certified-architect-training" target="_blank">SGridworks RPG</a> — treinamento gamificado</li>
+          <li><a href="https://claudecertifications.com" target="_blank">claudecertifications.com</a> — 25 questões grátis + study guides</li>
+          <li><a href="https://www.certsafari.com/anthropic/claude-certified-architect" target="_blank">CertSafari</a> — 360 flashcards</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- CONCEITOS-CHAVE POR DOMÍNIO        -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon concepts">&#x2261;</div>
+      <div class="section-title">Conceitos-Chave por Domínio</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        <span><span class="domain-badge d1-badge">D1</span>&nbsp; Agentic Architecture &amp; Orchestration</span>
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <ul>
+          <li><code>stop_reason</code> — use <code>tool_use</code> vs <code>end_turn</code> para controlar loops agênticos (nunca parse NL)</li>
+          <li><strong>Hub-and-spoke</strong> — padrão de coordenação com agente central que delega para subagentes especializados</li>
+          <li><strong>Task tool</strong> — mecanismo para criar e gerenciar subagentes com contexto isolado</li>
+          <li><code>allowedTools</code> — restringe quais tools cada agente/subagente pode usar</li>
+          <li><strong>PostToolUse hooks</strong> — interceptam resultados de tools para validação, logging ou transformação</li>
+          <li><strong>Context isolation</strong> — subagentes devem operar com contexto separado para evitar leakage</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        <span><span class="domain-badge d2-badge">D2</span>&nbsp; Tool Design &amp; MCP Integration</span>
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <ul>
+          <li><strong>Tool descriptions</strong> — mecanismo primário de seleção; descriptions claras e específicas > nomes genéricos</li>
+          <li><code>isError</code> flag — indica ao modelo que o resultado da tool é um erro (permite recovery inteligente)</li>
+          <li><code>errorCategory</code> — categorize erros: <code>transient</code>, <code>validation</code>, <code>permission</code>, <code>business_logic</code></li>
+          <li><code>tool_choice</code> — controla seleção: <code>auto</code> (modelo decide), <code>any</code> (deve usar alguma tool), <code>forced</code> (tool específica)</li>
+          <li><code>.mcp.json</code> vs <code>~/.claude.json</code> — configuração de MCP servers por projeto vs global</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        <span><span class="domain-badge d3-badge">D3</span>&nbsp; Claude Code Configuration &amp; Workflows</span>
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <ul>
+          <li><strong>CLAUDE.md hierarchy</strong> — 3 níveis: <code>~/.claude/CLAUDE.md</code> (user) → <code>projeto/CLAUDE.md</code> (project) → <code>subdir/CLAUDE.md</code> (directory)</li>
+          <li><code>.claude/rules/</code> — rules com glob patterns para aplicação condicional por tipo de arquivo</li>
+          <li><code>.claude/commands/</code> vs <code>.claude/skills/</code> — commands são slash commands customizados; skills têm SKILL.md com frontmatter</li>
+          <li><strong>SKILL.md frontmatter</strong> — <code>context: fork</code>, <code>allowed-tools</code>, <code>argument-hint</code> controlam execução</li>
+          <li><code>-p</code> flag — modo non-interactive para CI/CD (pipe prompt via stdin ou argumento)</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        <span><span class="domain-badge d4-badge">D4</span>&nbsp; Prompt Engineering &amp; Structured Output</span>
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <ul>
+          <li><strong>Explicit criteria > vague instructions</strong> — "avalie de 1–5 com estes critérios" > "dê feedback"</li>
+          <li><strong>Few-shot para format variation</strong> — exemplos concretos são mais eficazes que descrições de formato</li>
+          <li><code>tool_use</code> garante <strong>schema compliance mas NÃO semantic accuracy</strong> — o JSON vai ser válido, mas o conteúdo pode estar errado</li>
+          <li><strong>Enum + "other" + detail field</strong> — padrão para categorização flexível sem perder dados inesperados</li>
+          <li><strong>Validation-retry loops</strong> — valide output programaticamente e peça correção se inválido</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">
+        <span><span class="domain-badge d5-badge">D5</span>&nbsp; Context Management &amp; Reliability</span>
+        <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <ul>
+          <li><strong>Lost in the middle effect</strong> — informações no meio de contextos longos são mais facilmente ignoradas</li>
+          <li><strong>Progressive summarization risks</strong> — cada rodada de sumarização pode descartar dados que pareciam irrelevantes mas eram críticos</li>
+          <li><strong>Information provenance</strong> — rastreie a origem de cada dado para auditoria e debugging</li>
+          <li><strong>Confidence self-reporting</strong> — peça ao modelo para reportar seu nível de confiança junto com a resposta</li>
+          <li><strong>Graceful degradation com annotated gaps</strong> — quando informação falta, continue operando mas marque explicitamente o que está faltando</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>Recurso não-oficial. Não afiliado ou endossado pela Anthropic.</p>
+  <p style="margin-top:8px;"><a href="index.html">Voltar ao Simulado</a></p>
+</footer>
+
+<script>
+function toggle(el) {
+  const item = el.parentElement;
+  const answer = item.querySelector('.faq-answer');
+  const isOpen = item.classList.contains('open');
+
+  if (isOpen) {
+    answer.style.maxHeight = '0';
+    item.classList.remove('open');
+  } else {
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+    item.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>

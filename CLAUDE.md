@@ -12,6 +12,7 @@ A self-contained, single-page quiz app for studying the **Claude Certified Archi
 
 - **`index.html`** — The entire app: HTML structure, CSS (dark theme with CSS variables), and vanilla JavaScript. All-in-one, ~650 lines. Questions are loaded inline from the JSON file via a `const QUESTIONS = ...` assignment at line 333.
 - **`all_questions.json`** — Question bank (337 questions) with schema: `{ id, source, scenario, task_statement, question, options: {A,B,C,D}, correct, explanation, domain }`.
+- **`ccaf-faq.html`** — Standalone FAQ page covering exam details, study strategies, and key concepts per domain. Same dark theme as the simulado.
 
 ## Exam Domains (5)
 
