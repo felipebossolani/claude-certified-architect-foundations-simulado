@@ -40,6 +40,7 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 .nav-link:hover { color: var(--text-primary); }
 .nav-cta { font-size: 13px; font-weight: 600; color: white; background: var(--accent-orange); border-radius: 6px; padding: 7px 16px; text-decoration: none; transition: background 0.15s; }
 .nav-cta:hover { background: #c4694c; }
+.nav-cta .nav-cta-short { display: none; }
 .main { max-width: 660px; margin: 0 auto; padding: 0 24px; }
 .hero { padding: 72px 0 48px; }
 .hero-title { font-size: 38px; font-weight: 700; letter-spacing: -1.2px; line-height: 1.15; margin-bottom: 20px; }
@@ -75,6 +76,8 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
   .hero-secondary { display: block; margin: 16px 0 0; }
   .nav { gap: 16px; }
   .nav-cta { padding: 6px 12px; font-size: 12px; }
+  .nav-cta .nav-cta-full { display: none; }
+  .nav-cta .nav-cta-short { display: inline; }
 }
 </style>
 </head>
@@ -88,7 +91,7 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
     </a>
     <nav class="nav">
       <a href="ccaf-faq.html" class="nav-link">FAQ</a>
-      <a href="simulado.html" class="nav-cta">Iniciar Simulado</a>
+      <a href="simulado.html" class="nav-cta"><span class="nav-cta-full">Iniciar Simulado</span><span class="nav-cta-short">Simulado</span></a>
     </nav>
   </div>
 </header>
