@@ -2,6 +2,8 @@
 
 Repositório de estudos para a certificação **Claude Certified Architect — Foundations (CCA-F)**.
 
+**Acesse o simulado:** https://felipebossolani.github.io/claude-certified-architect-foundations-simulado/
+
 ## Banco de Questões — 337 questões
 
 | Domínio | Título | Peso | Questões |
@@ -15,7 +17,7 @@ Repositório de estudos para a certificação **Claude Certified Architect — F
 
 ## Como usar
 
-Abra `ccaf-simulado.html` no navegador — zero dependências, funciona offline.
+Acesse pelo link acima ou abra `index.html` localmente — zero dependências, funciona offline.
 - Seletor de domínios (D1-D5) individual ou todos
 - Feedback imediato ou resultado no final
 - Embaralhar ou sequencial por domínio
