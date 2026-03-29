@@ -24,10 +24,11 @@ body { line-height: 1.7; }
 .hero-title { font-size: 38px; font-weight: 700; letter-spacing: -1.2px; line-height: 1.15; margin-bottom: 20px; }
 .hero-subtitle { font-size: 17px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 12px; }
 .hero-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 40px; }
-.hero-cta { display: inline-block; padding: 16px 48px; background: var(--accent-orange); color: white; font-family: 'Poppins', Arial, sans-serif; font-size: 16px; font-weight: 600; border-radius: var(--radius); text-decoration: none; transition: background 0.15s; letter-spacing: -0.3px; }
+.hero-actions { display: flex; gap: 16px; }
+.hero-cta { flex: 1; text-align: center; padding: 16px 24px; background: var(--accent-orange); color: white; font-family: 'Poppins', Arial, sans-serif; font-size: 16px; font-weight: 600; border-radius: var(--radius); text-decoration: none; transition: background 0.15s; letter-spacing: -0.3px; }
 .hero-cta:hover { background: #c4694c; }
-.hero-secondary { display: inline-block; margin-left: 20px; font-size: 14px; color: var(--text-secondary); text-decoration: none; font-family: 'Poppins', Arial, sans-serif; }
-.hero-secondary:hover { color: var(--accent-orange); }
+.hero-cta--secondary { background: transparent; color: var(--accent-orange); border: 1px solid var(--accent-orange); }
+.hero-cta--secondary:hover { background: rgba(217,119,87,0.05); }
 .section { padding: 48px 0; border-top: 1px solid var(--border); }
 .section-title { font-size: 20px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 24px; }
 .domain-list { list-style: none; }
@@ -40,8 +41,8 @@ body { line-height: 1.7; }
 @media (max-width: 640px) {
   .hero { padding: 48px 0 32px; }
   .hero-title { font-size: 28px; }
-  .hero-cta { width: 100%; text-align: center; }
-  .hero-secondary { display: block; margin: 16px 0 0; }
+  .hero-actions { flex-direction: column; }
+  .hero-cta { width: 100%; }
   .nav { gap: 16px; }
 }
 </style>
@@ -66,8 +67,10 @@ body { line-height: 1.7; }
     <h1 class="hero-title">Prepare-se para a certificação Claude Certified Architect</h1>
     <p class="hero-subtitle">337 questões de prática cobrindo todos os 5 domínios do exame CCA-F. Compiladas de 6 fontes da comunidade, com feedback imediato, score escalado e drill down nos pontos fracos.</p>
     <p class="hero-desc">Criado por um dev que estava estudando para o exame e queria reunir as melhores questões em um lugar só.</p>
-    <a href="simulado.html" class="hero-cta">Iniciar Simulado</a>
-    <a href="ccaf-faq.html" class="hero-secondary">Ver FAQ sobre o exame</a>
+    <div class="hero-actions">
+      <a href="simulado.html" class="hero-cta">Iniciar Simulado</a>
+      <a href="ccaf-faq.html" class="hero-cta hero-cta--secondary">Ver FAQ sobre o exame</a>
+    </div>
   </section>
 
   <section class="section">
