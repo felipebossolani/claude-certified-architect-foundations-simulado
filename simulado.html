@@ -95,6 +95,11 @@
 }
 .mode-btn:hover { border-color: var(--border-active); }
 .mode-btn.selected { border-color: var(--accent-orange); color: var(--accent-orange); }
+.exam-badge {
+  display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.3px;
+  color: var(--accent-green); opacity: 0.9;
+  font-family: 'JetBrains Mono', monospace;
+}
 
 .start-btn {
   padding: 14px 48px; border-radius: var(--radius);
@@ -291,6 +296,16 @@
     </div>
 
     <div class="mode-section">
+      <div class="mode-label">Número de questões</div>
+      <div class="mode-options">
+        <button class="mode-btn" data-count="20" onclick="setCount(20, this)">20</button>
+        <button class="mode-btn" data-count="40" onclick="setCount(40, this)">40</button>
+        <button class="mode-btn selected" data-count="60" onclick="setCount(60, this)">60 <span class="exam-badge">= exame real</span></button>
+        <button class="mode-btn" data-count="0" onclick="setCount(0, this)">Todas</button>
+      </div>
+    </div>
+
+    <div class="mode-section">
       <div class="mode-label">Ordem das questões</div>
       <div class="mode-options">
         <button class="mode-btn selected" data-order="shuffle" onclick="setOrder('shuffle', this)">Embaralhar</button>
@@ -329,6 +344,7 @@ fetch("all_questions.json")
 let state = {
   selectedDomains: new Set(['D1','D2','D3','D4','D5']),
   mode: 'end',
+  questionCount: 60,
   order: 'shuffle',
   questions: [],
   currentIndex: 0,
@@ -408,6 +424,11 @@ function toggleDomain(domain, card) {
   document.getElementById('startBtn').disabled = state.selectedDomains.size === 0;
 }
 
+function setCount(count, btn) {
+  state.questionCount = count;
+  btn.parentElement.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
 function setMode(mode, btn) {
   state.mode = mode;
   btn.parentElement.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('selected'));
@@ -429,6 +450,9 @@ function startQuiz() {
       const j = Math.floor(Math.random() * (i + 1));
       [qs[i], qs[j]] = [qs[j], qs[i]];
     }
+  }
+  if (state.questionCount > 0 && qs.length > state.questionCount) {
+    qs = qs.slice(0, state.questionCount);
   }
   state.questions = qs;
   state.currentIndex = 0;
