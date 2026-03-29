@@ -2,7 +2,7 @@
 
 Repositório de estudos para a certificação **Claude Certified Architect — Foundations (CCA-F)**.
 
-**Acesse o simulado:** https://felipebossolani.github.io/claude-certified-architect-foundations-simulado/
+**Acesse o simulado:** https://felipebossolani.github.io/claude-arch/
 
 ## Banco de Questões — 337 questões
 
