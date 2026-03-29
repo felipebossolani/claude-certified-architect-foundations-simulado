@@ -38,7 +38,7 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
   border-bottom: 1px solid var(--border);
 }
 .header-inner {
-  max-width: 860px; margin: 0 auto; padding: 0 40px;
+  max-width: 860px; margin: 0 auto; padding: 0 24px;
   display: flex; align-items: center; justify-content: space-between;
   height: 60px;
 }
